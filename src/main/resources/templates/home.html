@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla/template :: head">
+<meta charset="utf-8">
+<title>ArticulosAccesorios</title>
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+	<div class="container">
+		<!-- <table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Id Articulo</th>
+					<th scope="col">Tipo</th>
+					<th scope="col">Color</th>
+				</tr>				
+			</thead>
+			<tbody>
+				<tr th:each=aad:${articulos_accesorios_detalles}>
+					<th scope="row" th:text="${aad.id}"></th>
+					<td th:text="${aad.id_articulo}"></td>
+					<td th:text="${aad.tipo}"></td>
+					<td th:text="${aad.color}"></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table> -->
+	</div>
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+</body>
+</html>
