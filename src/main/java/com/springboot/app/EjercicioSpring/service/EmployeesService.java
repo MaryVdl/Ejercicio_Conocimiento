@@ -19,5 +19,5 @@ public interface EmployeesService {
 	//Actualizar => Update
 	Employees updateEmployees(Employees employee);
 	
-
+	Employees createEmployee(Employees employee);
 }

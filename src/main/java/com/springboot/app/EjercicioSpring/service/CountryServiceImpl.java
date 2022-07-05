@@ -1,11 +1,13 @@
 package com.springboot.app.EjercicioSpring.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.springboot.app.EjercicioSpring.exception.ResourceNotFoundException;
 import com.springboot.app.EjercicioSpring.model.Countrys;
 import com.springboot.app.EjercicioSpring.repository.CountrysRepository;
 
@@ -18,28 +20,48 @@ public class CountryServiceImpl implements CountryService{
 
 	@Override
 	public Countrys getCountrysById(long countryId) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Countrys> countryDb = this.countryRepository.findById(countryId);
+		if (countryDb.isPresent()) {
+			return countryDb.get();
+		}else {
+			throw new ResourceNotFoundException("Record not found with id: " + countryId);
+		}
 	}
 
 	@Override
 	public List<Countrys> getAllCountrys() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.countryRepository.findAll();
 	}
 
 	@Override
-	public void deleteCountrys(long id) {
-		// TODO Auto-generated method stub
+	public void deleteCountrys(long countryId) {
+		Optional<Countrys> countryDb = this.countryRepository.findById(countryId);
+		if(countryDb.isPresent()) {
+			this.countryRepository.delete(countryDb.get());
+		}else {
+			throw new ResourceNotFoundException("Record not found with id: " + countryId);
+		}
 		
 	}
 
 	@Override
 	public Countrys updateCountrys(Countrys country) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Countrys> countryDb = this.countryRepository.findById((long) country.getId());
+		if (countryDb.isPresent()) {
+			Countrys countryUpdate = countryDb.get();
+			countryUpdate.setId(country.getId());
+			countryUpdate.setId_employee(country.getId_employee());
+			countryUpdate.setCode(country.getCode());
+			countryUpdate.setName(country.getName());
+			return countryUpdate;
+		}else {
+			throw new ResourceNotFoundException("Record not found with id: " + country);
+		}
 	}
-	
 
+	@Override
+	public Countrys createCountry(Countrys country) {
+		return countryRepository.save(country);
+	}
 
 }

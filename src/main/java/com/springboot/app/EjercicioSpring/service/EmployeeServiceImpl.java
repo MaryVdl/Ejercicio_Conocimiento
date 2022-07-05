@@ -8,36 +8,61 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.app.EjercicioSpring.exception.ResourceNotFoundException;
-import com.springboot.app.EjercicioSpring.model.Airports;
 import com.springboot.app.EjercicioSpring.model.Employees;
-import com.springboot.app.EjercicioSpring.repository.LanguagesRepository;
+import com.springboot.app.EjercicioSpring.repository.EmployeesRepository;
 
 @Service //Indica que es un servicio
 @Transactional
 public class  EmployeeServiceImpl implements EmployeesService{
+	
+	@Autowired
+	private EmployeesRepository employeeRepository;
 
 	@Override
 	public Employees getEmployeesById(long employeeId) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Employees> empDb = this.employeeRepository.findById(employeeId);
+		if (empDb.isPresent()) {
+			return empDb.get();
+			
+		}else {
+			throw new ResourceNotFoundException("Record not found with id: " + employeeId);
+		}
 	}
 
 	@Override
 	public List<Employees> getAllEmployees() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.employeeRepository.findAll();
 	}
 
 	@Override
-	public void deleteEmployees(long id) {
-		// TODO Auto-generated method stub
+	public void deleteEmployees(long employeeId) {
+		Optional<Employees> empDb = this.employeeRepository.findById(employeeId);
+		if(empDb.isPresent()) {
+			this.employeeRepository.delete(empDb.get());
+		}else {
+			throw new ResourceNotFoundException("Record not found with id: " + employeeId);
+		}
 		
 	}
 
 	@Override
 	public Employees updateEmployees(Employees employee) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Employees> empDb = this.employeeRepository.findById((long) employee.getId());
+		if (empDb.isPresent()) {
+			Employees empUpdate = empDb.get();
+			empUpdate.setId(employee.getId());
+			empUpdate.setSurname(employee.getSurname());
+			empUpdate.setFirstname(employee.getFirstname());
+			return empUpdate;
+		}else {
+			throw new ResourceNotFoundException("Record not found with id: " + employee);
+		}
+	}
+
+	@Override
+	public Employees createEmployee(Employees employee) {
+		return employeeRepository.save(employee);
 	}
 
 

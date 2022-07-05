@@ -18,5 +18,7 @@ public interface AirportsService {
 
 	//Actualizar => Update
 	Airports updateAirports(Airports airport);	
+	
+	Airports createAirport (Airports airport);
 
 }

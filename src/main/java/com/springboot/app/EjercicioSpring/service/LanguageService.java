@@ -18,6 +18,7 @@ public interface LanguageService {
 	void deleteLanguages(long id);
 
 	//Actualizar => Update
-	Languages updateLanguages(Languages languaje);
+	Languages updateLanguages(Languages language);
 
+	Languages createLanguages(Languages language);
 }

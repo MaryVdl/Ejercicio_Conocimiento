@@ -17,5 +17,7 @@ public interface CountryService {
 
 	//Actualizar => Update
 	Countrys updateCountrys(Countrys country);
+	
+	Countrys createCountry (Countrys country);
 
 }
