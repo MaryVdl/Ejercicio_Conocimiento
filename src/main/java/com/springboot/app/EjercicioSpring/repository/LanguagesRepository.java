@@ -8,7 +8,7 @@ import com.springboot.app.EjercicioSpring.model.Languages;
 
 
 @Repository
-public interface LanguagesRepository extends JpaRepository<Languages, Long>{
+public interface LanguagesRepository extends JpaRepository<Languages, Integer>{
 	
 
 }

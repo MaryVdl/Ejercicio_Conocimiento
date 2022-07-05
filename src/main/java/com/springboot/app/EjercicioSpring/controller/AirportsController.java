@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +29,7 @@ public class AirportsController {
 	
 	//Obtener por id
 	@GetMapping ("/detalleairport/{id}")
-	public ResponseEntity<Airports> getAirportsById(@PathVariable long id){
+	public ResponseEntity<Airports> getAirportsById(@PathVariable int id){
 		return ResponseEntity.ok().body(airportsService.getAirportsById(id));
 		
 	}
@@ -44,11 +46,16 @@ public class AirportsController {
 
 	
 	// delete
+	@DeleteMapping("/eliminarairport/{id}")
+	public HttpStatus deleteAirport (@PathVariable int id) {
+		this.airportsService.deleteAirports(id);
+		return HttpStatus.OK;
+	}
 	
 	
 	// update
-	@GetMapping ("/actualizarairport")
-	public ResponseEntity<Airports> updateAirports(@PathVariable long id, @RequestBody Airports airport){
+	@PutMapping ("/actualizarairport/{id}")
+	public ResponseEntity<Airports> updateAirports(@PathVariable int id, @RequestBody Airports airport){
 		airport.setId((int) id);
 		return ResponseEntity.ok().body(this.airportsService.createAirport(airport));
 		

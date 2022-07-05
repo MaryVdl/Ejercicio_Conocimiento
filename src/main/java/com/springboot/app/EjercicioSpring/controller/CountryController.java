@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +25,7 @@ public class CountryController {
 	private CountryService countryService;
 	
 	@GetMapping("/detallecountry/{id}")
-	public ResponseEntity<Countrys> getCountryById(@PathVariable long id){
+	public ResponseEntity<Countrys> getCountryById(@PathVariable int id){
 		return ResponseEntity.ok().body(countryService.getCountrysById(id));
 	}
 	
@@ -35,9 +37,13 @@ public class CountryController {
 		}
 		return ResponseEntity.ok().body(countryService.getAllCountrys());
 	}
-	
-	@GetMapping("/actualizarcountry")
-	public ResponseEntity<Countrys> updateCountrys(@PathVariable long id, @RequestBody Countrys country){
+	@DeleteMapping("eliminarCountry/{id}")
+	public HttpStatus deleteCountry(@PathVariable int id) {
+		this.countryService.deleteCountrys(id);
+		return HttpStatus.OK;
+	}
+	@PutMapping("/actualizarcountry/{id}")
+	public ResponseEntity<Countrys> updateCountrys(@PathVariable int id, @RequestBody Countrys country){
 		country.setId((int) id);
 		return ResponseEntity.ok().body(this.countryService.createCountry(country));
 	}

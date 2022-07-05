@@ -21,7 +21,7 @@ public class AirportsServiceImpl implements AirportsService{
 	private AirportsRepository airportsRepository;
 
 	@Override
-	public Airports getAirportsById(long airportId) {
+	public Airports getAirportsById(int airportId) {
 		Optional<Airports> airportDb = this.airportsRepository.findById(airportId);
 		
 		if (airportDb.isPresent()) {
@@ -37,7 +37,7 @@ public class AirportsServiceImpl implements AirportsService{
 	}
 
 	@Override
-	public void deleteAirports(long airportId) {
+	public void deleteAirports(int airportId) {
 		Optional<Airports> airportDb = this.airportsRepository.findById(airportId);
 		if (airportDb.isPresent()) {
 			this.airportsRepository.delete(airportDb.get());
@@ -49,15 +49,16 @@ public class AirportsServiceImpl implements AirportsService{
 
 	@Override
 	public Airports updateAirports(Airports airport) {
-		Optional<Airports> airportDb = this.airportsRepository.findById((long) airport.getId());
+		Optional<Airports> airportDb = this.airportsRepository.findById(airport.getId());
 		if (airportDb.isPresent()) {
 			Airports  airportUpdate = airportDb.get();
 			airportUpdate.setId(airport.getId());
 			airportUpdate.setId_country(airport.getId_country());
 			airportUpdate.setName(airport.getName());
+			airportsRepository.save(airportUpdate);
 			return airportUpdate;
 		}else {
-			throw new ResourceNotFoundException("Record not found with id: " + airport);
+			throw new ResourceNotFoundException("Record not found with id: " + airport.getId());
 		}
 	}
 

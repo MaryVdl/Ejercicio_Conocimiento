@@ -19,7 +19,7 @@ public class CountryServiceImpl implements CountryService{
 	private CountrysRepository countryRepository;
 
 	@Override
-	public Countrys getCountrysById(long countryId) {
+	public Countrys getCountrysById(int countryId) {
 		Optional<Countrys> countryDb = this.countryRepository.findById(countryId);
 		if (countryDb.isPresent()) {
 			return countryDb.get();
@@ -34,7 +34,7 @@ public class CountryServiceImpl implements CountryService{
 	}
 
 	@Override
-	public void deleteCountrys(long countryId) {
+	public void deleteCountrys(int countryId) {
 		Optional<Countrys> countryDb = this.countryRepository.findById(countryId);
 		if(countryDb.isPresent()) {
 			this.countryRepository.delete(countryDb.get());
@@ -46,16 +46,17 @@ public class CountryServiceImpl implements CountryService{
 
 	@Override
 	public Countrys updateCountrys(Countrys country) {
-		Optional<Countrys> countryDb = this.countryRepository.findById((long) country.getId());
+		Optional<Countrys> countryDb = this.countryRepository.findById( country.getId());
 		if (countryDb.isPresent()) {
 			Countrys countryUpdate = countryDb.get();
 			countryUpdate.setId(country.getId());
 			countryUpdate.setId_employee(country.getId_employee());
 			countryUpdate.setCode(country.getCode());
 			countryUpdate.setName(country.getName());
+			countryRepository.save(countryUpdate);
 			return countryUpdate;
 		}else {
-			throw new ResourceNotFoundException("Record not found with id: " + country);
+			throw new ResourceNotFoundException("Record not found with id: " + country.getId());
 		}
 	}
 

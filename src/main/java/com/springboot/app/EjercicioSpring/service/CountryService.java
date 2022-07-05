@@ -7,13 +7,13 @@ import com.springboot.app.EjercicioSpring.model.Countrys;
 public interface CountryService {
 	
 	//Obtener por id => FindById
-	Countrys getCountrysById(long countryId);
+	Countrys getCountrysById(int countryId);
 		
 	//Obtener todo => FindAl
 	List<Countrys> getAllCountrys();
 		
 	//Eliminar => Delete
-	void deleteCountrys(long id);
+	void deleteCountrys(int id);
 
 	//Actualizar => Update
 	Countrys updateCountrys(Countrys country);

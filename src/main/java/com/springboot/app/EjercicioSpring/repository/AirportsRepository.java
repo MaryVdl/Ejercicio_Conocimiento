@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.springboot.app.EjercicioSpring.model.Airports;
 
 @Repository
-public interface AirportsRepository extends JpaRepository<Airports, Long>{
+public interface AirportsRepository extends JpaRepository<Airports, Integer>{
 
 }

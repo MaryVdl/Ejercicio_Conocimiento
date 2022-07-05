@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +27,7 @@ public class EmployeesController {
 	private EmployeesService employeesService; 
 	
 	@GetMapping("/detalleemployee/{id}")
-	public ResponseEntity<Employees> getEmployeesById(@PathVariable long id){
+	public ResponseEntity<Employees> getEmployeesById(@PathVariable int id){
 		return ResponseEntity.ok().body(employeesService.getEmployeesById(id));
 	}
 	
@@ -38,13 +40,17 @@ public class EmployeesController {
 		return ResponseEntity.ok().body(employeesService.getAllEmployees());
 	}
 	
-	@GetMapping("/actualizaremployees")
-	public ResponseEntity<Employees> updateEmployees (@PathVariable long id, @RequestBody Employees employee){
-		employee.setId((int) id);
+	@PutMapping("/actualizaremployees/{id}")
+	public ResponseEntity<Employees> updateEmployees (@PathVariable int id, @RequestBody Employees employee){
+		employee.setId(id);
 		return ResponseEntity.ok().body(this.employeesService.createEmployee(employee));
 	}
 	
 	//Delete
-	
+	@DeleteMapping("/eliminaremployee/{id}")
+	public HttpStatus deleteEmployee(@PathVariable int id) {
+		this.employeesService.deleteEmployees(id);
+		return HttpStatus.OK;
+	}
 
 }

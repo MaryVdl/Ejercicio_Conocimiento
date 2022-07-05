@@ -19,7 +19,7 @@ public class  EmployeeServiceImpl implements EmployeesService{
 	private EmployeesRepository employeeRepository;
 
 	@Override
-	public Employees getEmployeesById(long employeeId) {
+	public Employees getEmployeesById(int employeeId) {
 		Optional<Employees> empDb = this.employeeRepository.findById(employeeId);
 		if (empDb.isPresent()) {
 			return empDb.get();
@@ -36,7 +36,7 @@ public class  EmployeeServiceImpl implements EmployeesService{
 	}
 
 	@Override
-	public void deleteEmployees(long employeeId) {
+	public void deleteEmployees(int employeeId) {
 		Optional<Employees> empDb = this.employeeRepository.findById(employeeId);
 		if(empDb.isPresent()) {
 			this.employeeRepository.delete(empDb.get());
@@ -48,15 +48,16 @@ public class  EmployeeServiceImpl implements EmployeesService{
 
 	@Override
 	public Employees updateEmployees(Employees employee) {
-		Optional<Employees> empDb = this.employeeRepository.findById((long) employee.getId());
+		Optional<Employees> empDb = this.employeeRepository.findById(employee.getId());
 		if (empDb.isPresent()) {
 			Employees empUpdate = empDb.get();
 			empUpdate.setId(employee.getId());
 			empUpdate.setSurname(employee.getSurname());
 			empUpdate.setFirstname(employee.getFirstname());
+			employeeRepository.save(empUpdate);
 			return empUpdate;
 		}else {
-			throw new ResourceNotFoundException("Record not found with id: " + employee);
+			throw new ResourceNotFoundException("Record not found with id: " + employee.getId());
 		}
 	}
 

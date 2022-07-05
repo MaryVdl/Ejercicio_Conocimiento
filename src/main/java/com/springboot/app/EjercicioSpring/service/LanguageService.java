@@ -9,13 +9,13 @@ public interface LanguageService {
 	
 
 	//Obtener Language por id
-	Languages getLanguagesById(long languageId);
+	Languages getLanguagesById(int languageId);
 				
 	//Obtener todo => FindAl
 	List<Languages> getAllLanguages();
 				
 	//Eliminar => Delete
-	void deleteLanguages(long id);
+	void deleteLanguages(int id);
 
 	//Actualizar => Update
 	Languages updateLanguages(Languages language);

@@ -18,7 +18,7 @@ public class LanguageServiceImpl implements LanguageService{
 	@Autowired
 	private LanguagesRepository languageRepository;
 	@Override
-	public Languages getLanguagesById(long languageId) {
+	public Languages getLanguagesById(int languageId) {
 		Optional<Languages> lanDb = this.languageRepository.findById(languageId);
 		if(lanDb.isPresent()) {
 			return lanDb.get();
@@ -33,7 +33,7 @@ public class LanguageServiceImpl implements LanguageService{
 	}
 
 	@Override
-	public void deleteLanguages(long languageId) {
+	public void deleteLanguages(int languageId) {
 		Optional<Languages> lanDb = this.languageRepository.findById(languageId);
 		if(lanDb.isPresent()) {
 			this.languageRepository.delete(lanDb.get());
@@ -45,22 +45,24 @@ public class LanguageServiceImpl implements LanguageService{
 
 	@Override
 	public Languages updateLanguages(Languages language) {
-		Optional<Languages> lanDb = this.languageRepository.findById((long) language.getId());
+		Optional<Languages> lanDb = this.languageRepository.findById(language.getId());
 		if(lanDb.isPresent()) {
 			Languages lanUpdate = lanDb.get();
 			lanUpdate.setId(language.getId());
 			lanUpdate.setId_employee(language.getId_employee());
 			lanUpdate.setCode(language.getCode());
 			lanUpdate.setName(language.getName());
+			languageRepository.save(lanUpdate);
 			return lanUpdate;
 		}else {
-			throw new ResourceNotFoundException("Record not found with id: " + language);
+			throw new ResourceNotFoundException("Record not found with id: " + language.getId());
 		}
 	}
+	
+	
 
 	@Override
 	public Languages createLanguages(Languages language) {
-		// TODO Auto-generated method stub
 		return languageRepository.save(language);
 	}
 	
