@@ -27,6 +27,8 @@ public class Airports {
 	
 	@Column(name = "name")
 	private String name;
+	
+	
 
 	public int getId() {
 		return id;

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import com.springboot.app.EjercicioSpring.service.EmployeesService;
 
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/apiv1")
 public class EmployeesController {
 	
 	//Inyeccion de Dependencia
@@ -51,6 +52,11 @@ public class EmployeesController {
 	public HttpStatus deleteEmployee(@PathVariable int id) {
 		this.employeesService.deleteEmployees(id);
 		return HttpStatus.OK;
+	}
+	
+	@PostMapping("/employees/add")
+	public ResponseEntity<Employees> createEmployee(@RequestBody Employees employee){
+		return ResponseEntity.ok().body(this.employeesService.createEmployee(employee));
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +47,7 @@ public class AirportsController {
 
 	
 	// delete
-	@DeleteMapping("/eliminarairport/{id}")
+	@DeleteMapping("/eliminasrairport/{id}")
 	public HttpStatus deleteAirport (@PathVariable int id) {
 		this.airportsService.deleteAirports(id);
 		return HttpStatus.OK;
@@ -60,5 +61,11 @@ public class AirportsController {
 		return ResponseEntity.ok().body(this.airportsService.createAirport(airport));
 		
 	}
+	
+	//Crear
+	
+	
+	
+	
 	
 }
