@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class Airports {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	/*@Column(name = "id_country")
