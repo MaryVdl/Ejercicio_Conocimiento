@@ -53,7 +53,7 @@ public class AirportsServiceImpl implements AirportsService{
 		if (airportDb.isPresent()) {
 			Airports  airportUpdate = airportDb.get();
 			airportUpdate.setId(airport.getId());
-			airportUpdate.setId_country(airport.getId_country());
+			//airportUpdate.setId_country(airport.getId_country());
 			airportUpdate.setName(airport.getName());
 			airportsRepository.save(airportUpdate);
 			return airportUpdate;

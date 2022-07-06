@@ -2,22 +2,22 @@ package com.springboot.app.EjercicioSpring.service;
 
 import java.util.List;
 
-import com.springboot.app.EjercicioSpring.model.Countrys;
+import com.springboot.app.EjercicioSpring.model.Country;
 
 public interface CountryService {
 	
 	//Obtener por id => FindById
-	Countrys getCountrysById(int countryId);
+	Country getCountrysById(int countryId);
 		
 	//Obtener todo => FindAl
-	List<Countrys> getAllCountrys();
+	List<Country> getAllCountrys();
 		
 	//Eliminar => Delete
 	void deleteCountrys(int id);
 
 	//Actualizar => Update
-	Countrys updateCountrys(Countrys country);
+	Country updateCountrys(Country country);
 	
-	Countrys createCountry (Countrys country);
+	Country createCountry (Country country);
 
 }

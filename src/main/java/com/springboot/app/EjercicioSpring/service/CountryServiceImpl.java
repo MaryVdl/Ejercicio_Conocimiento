@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.app.EjercicioSpring.exception.ResourceNotFoundException;
-import com.springboot.app.EjercicioSpring.model.Countrys;
+import com.springboot.app.EjercicioSpring.model.Country;
 import com.springboot.app.EjercicioSpring.repository.CountrysRepository;
 
 @Service //Indica que es un servicio
@@ -19,8 +19,8 @@ public class CountryServiceImpl implements CountryService{
 	private CountrysRepository countryRepository;
 
 	@Override
-	public Countrys getCountrysById(int countryId) {
-		Optional<Countrys> countryDb = this.countryRepository.findById(countryId);
+	public Country getCountrysById(int countryId) {
+		Optional<Country> countryDb = this.countryRepository.findById(countryId);
 		if (countryDb.isPresent()) {
 			return countryDb.get();
 		}else {
@@ -29,13 +29,13 @@ public class CountryServiceImpl implements CountryService{
 	}
 
 	@Override
-	public List<Countrys> getAllCountrys() {
+	public List<Country> getAllCountrys() {
 		return this.countryRepository.findAll();
 	}
 
 	@Override
 	public void deleteCountrys(int countryId) {
-		Optional<Countrys> countryDb = this.countryRepository.findById(countryId);
+		Optional<Country> countryDb = this.countryRepository.findById(countryId);
 		if(countryDb.isPresent()) {
 			this.countryRepository.delete(countryDb.get());
 		}else {
@@ -45,12 +45,12 @@ public class CountryServiceImpl implements CountryService{
 	}
 
 	@Override
-	public Countrys updateCountrys(Countrys country) {
-		Optional<Countrys> countryDb = this.countryRepository.findById( country.getId());
+	public Country updateCountrys(Country country) {
+		Optional<Country> countryDb = this.countryRepository.findById( country.getId());
 		if (countryDb.isPresent()) {
-			Countrys countryUpdate = countryDb.get();
+			Country countryUpdate = countryDb.get();
 			countryUpdate.setId(country.getId());
-			countryUpdate.setId_employee(country.getId_employee());
+			countryUpdate.setId_airport(country.getId_airport());
 			countryUpdate.setCode(country.getCode());
 			countryUpdate.setName(country.getName());
 			countryRepository.save(countryUpdate);
@@ -61,7 +61,7 @@ public class CountryServiceImpl implements CountryService{
 	}
 
 	@Override
-	public Countrys createCountry(Countrys country) {
+	public Country createCountry(Country country) {
 		return countryRepository.save(country);
 	}
 

@@ -8,13 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.app.EjercicioSpring.exception.Mensaje;
-import com.springboot.app.EjercicioSpring.model.Countrys;
+import com.springboot.app.EjercicioSpring.model.Country;
 import com.springboot.app.EjercicioSpring.service.CountryService;
 
 @RestController
@@ -25,13 +26,13 @@ public class CountryController {
 	private CountryService countryService;
 	
 	@GetMapping("/detallecountry/{id}")
-	public ResponseEntity<Countrys> getCountryById(@PathVariable int id){
+	public ResponseEntity<Country> getCountryById(@PathVariable int id){
 		return ResponseEntity.ok().body(countryService.getCountrysById(id));
 	}
 	
 	@GetMapping("/listacountrys")
 	public ResponseEntity<?> getAllCountrys(){
-		List<Countrys> lista = countryService.getAllCountrys();
+		List<Country> lista = countryService.getAllCountrys();
 		if (lista.isEmpty()) {
 			return new ResponseEntity<>(new Mensaje("Sin informacionen la  Base de Datos"), HttpStatus.BAD_REQUEST);
 		}
@@ -43,8 +44,14 @@ public class CountryController {
 		return HttpStatus.OK;
 	}
 	@PutMapping("/actualizarcountry/{id}")
-	public ResponseEntity<Countrys> updateCountrys(@PathVariable int id, @RequestBody Countrys country){
+	public ResponseEntity<Country> updateCountrys(@PathVariable int id, @RequestBody Country country){
 		country.setId((int) id);
+		return ResponseEntity.ok().body(this.countryService.createCountry(country));
+		
+	}
+	
+	@PostMapping("/countryadd")
+	public ResponseEntity<Country> createCountry(@RequestBody Country country){
 		return ResponseEntity.ok().body(this.countryService.createCountry(country));
 	}
 	

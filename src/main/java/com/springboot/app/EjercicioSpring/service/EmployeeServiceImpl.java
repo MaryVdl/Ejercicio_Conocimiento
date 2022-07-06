@@ -54,6 +54,8 @@ public class  EmployeeServiceImpl implements EmployeesService{
 			empUpdate.setId(employee.getId());
 			empUpdate.setSurname(employee.getSurname());
 			empUpdate.setFirstname(employee.getFirstname());
+			empUpdate.setId_country(employee.getId_country());
+			empUpdate.setId_language(employee.getId_language());
 			employeeRepository.save(empUpdate);
 			return empUpdate;
 		}else {

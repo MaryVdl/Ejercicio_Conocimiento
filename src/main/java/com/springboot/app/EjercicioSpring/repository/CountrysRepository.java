@@ -3,9 +3,9 @@ package com.springboot.app.EjercicioSpring.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.springboot.app.EjercicioSpring.model.Countrys;
+import com.springboot.app.EjercicioSpring.model.Country;
 
 @Repository
-public interface CountrysRepository extends JpaRepository<Countrys, Integer>{
+public interface CountrysRepository extends JpaRepository<Country, Integer>{
 
 }

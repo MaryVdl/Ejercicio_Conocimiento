@@ -22,8 +22,8 @@ public class Airports {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "id_country")
-	private int id_country;
+	/*@Column(name = "id_country")
+	private int id_country;*/
 	
 	@Column(name = "name")
 	private String name;
@@ -38,13 +38,13 @@ public class Airports {
 		this.id = id;
 	}
 
-	public int getId_country() {
+	/*public int getId_country() {
 		return id_country;
 	}
 
 	public void setId_country(int id_country) {
 		this.id_country = id_country;
-	}
+	}*/
 
 	public String getName() {
 		return name;

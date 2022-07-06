@@ -24,8 +24,8 @@ public class Languages {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "id_employee")
-	private int id_employee;
+	/*@Column(name = "id_employee")
+	private int id_employee;*/
 	
 	@Column(name = "code")
 	private String code;
@@ -41,13 +41,13 @@ public class Languages {
 		this.id = id;
 	}
 
-	public int getId_employee() {
+	/*public int getId_employee() {
 		return id_employee;
 	}
 
 	public void setId_employee(int id_employee) {
 		this.id_employee = id_employee;
-	}
+	}*/
 
 	public String getCode() {
 		return code;

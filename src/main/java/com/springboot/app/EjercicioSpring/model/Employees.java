@@ -27,6 +27,12 @@ public class Employees {
 	
 	@Column(name = "firstname")
 	private String firstname;
+	
+	@Column(name = "id_country")
+	private int id_country;
+	
+	@Column(name = "id_language")
+	private int id_language;
 
 	public int getId() {
 		return id;
@@ -50,6 +56,24 @@ public class Employees {
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
+	}
+
+	public int getId_country() {
+		return id_country;
+	}
+
+	public void setId_country(int id_country) {
+		this.id_country = id_country;
+	}
+
+	public int getId_language() {
+		return id_language;
+	}
+
+	public void setId_language(int id_language) {
+		this.id_language = id_language;
 	}	
+
+	
 
 }

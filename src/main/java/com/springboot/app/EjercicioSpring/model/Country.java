@@ -17,14 +17,14 @@ create table country(
 
 @Entity 
 @Table(name = "country")
-public class Countrys {	
+public class Country {	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "id_employee")
-	private int id_employee;
+	@Column(name = "id_airport")
+	private int id_airport;
 	
 	@Column(name = " code")
 	private String code;
@@ -40,12 +40,13 @@ public class Countrys {
 		this.id = id;
 	}
 
-	public int getId_employee() {
-		return id_employee;
+	
+	public int getId_airport() {
+		return id_airport;
 	}
 
-	public void setId_employee(int id_employee) {
-		this.id_employee = id_employee;
+	public void setId_airport(int id_airport) {
+		this.id_airport = id_airport;
 	}
 
 	public String getCode() {

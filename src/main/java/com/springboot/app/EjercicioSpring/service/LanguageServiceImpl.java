@@ -49,7 +49,7 @@ public class LanguageServiceImpl implements LanguageService{
 		if(lanDb.isPresent()) {
 			Languages lanUpdate = lanDb.get();
 			lanUpdate.setId(language.getId());
-			lanUpdate.setId_employee(language.getId_employee());
+			//lanUpdate.setId_employee(language.getId_employee());
 			lanUpdate.setCode(language.getCode());
 			lanUpdate.setName(language.getName());
 			languageRepository.save(lanUpdate);
